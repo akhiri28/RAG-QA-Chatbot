@@ -1,0 +1,12 @@
+Create a new repo in GitHub
+Name of local repo and GitHUb repo should match
+
+Set the origin 
+ git remote add origin https://github.com/akhiri28/RAG-QA-Chatbot.git
+Check the remote 
+ git remote -v
+
+git status
+git add .
+git commit -m "message"
+git push origin main
