@@ -3,6 +3,13 @@ Project
 Build a Q & A Bot.
 
 
+RAG 
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+
 Reference
 
 - https://www.youtube.com/watch?v=71MW5WeHdz8 
