@@ -24,6 +24,8 @@ http://localhost:6333/dashboard#/collections
 
 This design represents a robust, event-driven MLOps architecture. It separates the "heavy lifting" of data ingestion from the "real-time" responsiveness of the user interface, ensuring scalability and ease of maintenance.
 
+![alt text](<RAG QA Chat Bot (4).jpg>)
+
 ### 1. The Architectural Core
 
 
@@ -116,3 +118,5 @@ Below are the primary resources and technical guides that validate this specific
 | **FastEmbed** | *Edge/Local Inference* | Massive cost savings vs. using OpenAI's `text-embedding-3`. |
 
 (https://github.com/qdrant/workshop-improving-r-in-rag)
+
+https://gemini.google.com/app/a379e54dfefae38c?hl=en-IN
