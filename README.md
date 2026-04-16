@@ -24,7 +24,7 @@ http://localhost:6333/dashboard#/collections
 
 This design represents a robust, event-driven MLOps architecture. It separates the "heavy lifting" of data ingestion from the "real-time" responsiveness of the user interface, ensuring scalability and ease of maintenance.
 
-![alt text](<RAG QA Chat Bot (4).jpg>)
+![alt text](<RAG QA Chat Bot.jpg>)
 
 ### 1. The Architectural Core
 
