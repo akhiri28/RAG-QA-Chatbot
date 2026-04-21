@@ -2,12 +2,14 @@ Project
 
 Build a Q & A Bot.
 
+Steps
+Create virtual environment - python -m venv .venv 
+Activate the virtual environment - .\.venv\Scripts\Activate.ps1
+Add add .venv/ in .gitignore file
+Install the libraries - pip install -r requirements.txt
 
 RAG 
 
-![alt text](image.png)
-
-![alt text](image-1.png)
 
 
 Reference
