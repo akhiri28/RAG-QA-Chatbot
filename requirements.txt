@@ -12,3 +12,6 @@ chromadb==0.5.3
 chroma-hnswlib==0.7.3
 onnxruntime
 pandas
+dash
+page
+dash_bootstrap_components
