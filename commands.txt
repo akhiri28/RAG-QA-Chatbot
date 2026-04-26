@@ -14,5 +14,8 @@ git push origin main
 Create virtual environment
 python -m venv .venv
 
-Docker commads
+Docker commands
+----------------
+Start the docker desktop
+check if the docker images is available
 docker run -p 8000:8000 -v "${PWD}/vector_store:/data" chromadb/chroma

@@ -2,24 +2,27 @@ import os
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 import chromadb
-
+os.environ["OPENAI_API_KEY"] = ""
 
 # Connect to the server you just started
 client = chromadb.HttpClient(host='127.0.0.1', port=8000)
-collection = client.get_or_create_collection("youtube_transcripts")
+collection = client.get_or_create_collection("datatalks-qa")
 # Get embeddings
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 # 4. Search Chroma
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+llm = ChatOpenAI(model="gpt-5.4-mini", temperature=0.2)
+ft_llm = ChatOpenAI(model="ft:gpt-3.5-turbo-0125:personal::DYunoBkh", temperature=0.2)
 # Prompt Template
+
 prompt = PromptTemplate(
     template="""
-      You are a helpful assistant.
-      Answer ONLY from the provided transcript context.
-      If the context is insufficient, just say you don't know.
+You're a course teaching assistant. Answer the QUESTION based on the CONTEXT from the FAQ database.
+Use only the facts from the CONTEXT when answering the QUESTION. Please limit your to 100 words. Dont give information about the year of course.
 
-      {context}
-      Question: {question}
+QUESTION: {question}
+
+CONTEXT: 
+{context}
     """,
     input_variables = ['context', 'question']
 )
@@ -29,7 +32,7 @@ def get_answer(user_question):
     query_vector = embeddings.embed_query(user_question)
     results = collection.query(
         query_embeddings=[query_vector],
-        n_results=3,  # Number of matching chunks to return
+        n_results=5,  # Number of matching chunks to return
         include=["documents", "metadatas", "distances"]
     )
 
@@ -38,6 +41,22 @@ def get_answer(user_question):
     final_prompt = prompt.invoke({"context": context_text, "question": user_question})
 
     answer = llm.invoke(final_prompt)
+
+    return answer.content
+
+def get_ft_answer(user_question):
+    query_vector = embeddings.embed_query(user_question)
+    results = collection.query(
+        query_embeddings=[query_vector],
+        n_results=5,  # Number of matching chunks to return
+        include=["documents", "metadatas", "distances"]
+    )
+
+    context_text = "\n\n".join(doc for doc in results['documents'][0])
+
+    final_prompt = prompt.invoke({"context": context_text, "question": user_question})
+
+    answer = ft_llm.invoke(final_prompt)
 
     return answer.content
 

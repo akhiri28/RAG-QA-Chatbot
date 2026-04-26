@@ -15,3 +15,4 @@ pandas
 dash
 page
 dash_bootstrap_components
+python-docx
